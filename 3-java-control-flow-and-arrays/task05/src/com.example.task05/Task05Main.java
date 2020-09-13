@@ -7,6 +7,13 @@ public class Task05Main {
         /*
         System.out.println(getMin(5,4,3));
          */
+
+
+
+
+
+
+        
     }
 
     static int getMin(int a, int b, int c) {
