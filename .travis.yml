@@ -9,7 +9,7 @@ cache:
     - $HOME/.gradle/wrapper/
 script:
   - |
-    task=$(git diff --name-only $TRAVIS_BRANCH...HEAD | awk -F/ '{print $(NF-1)}' | sort -u | grep task)
+    diff=$(git diff --name-only $TRAVIS_BRANCH...HEAD | awk -F/ '{print $(NF-1)}' | sort -u | grep task)
     count=`echo $diff | wc -l`
     if [ "$count" == "0" ];
     then
