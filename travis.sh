@@ -1,20 +1,24 @@
 #!/bin/bash
-    diff=$(git diff --name-only bb42d6dcec3d36547bb3235674343a829f1facc0 HEAD | awk -F/ '{print $1, $2}' | sort -u -k 2 | grep task)
+    diff=$(git diff --name-only 4fbee8fb7c20775550477609036b4eb0c431b500 HEAD | awk -F/ '{print $1, $2}' | sort -u -k 2 | grep task)
     count=`echo $diff | wc -w`
     if [ "$count" == "0" ];
     then
       echo "Nothing to check"
       exit 1
     fi
-    if [ $count != 1 ];
+    if [ $count != 2 ];
     then
       echo "Only single task is allowed"
       exit 1
     fi
     echo "Checking $task"
-	slot=$(echo $STR | cut -f1 -d-)
-	task=$(echo $STR | cut -f2 -d-)
-    cmd="cd $slot && ./gradlew :$task:clean :$task:check"
+	slot=$(echo $diff | cut -f1 -d' ')
+	task=$(echo $diff | cut -f2 -d' ')
+	cd="cd $slot"
+    cmd="./gradlew :$task:clean :$task:check"
+	echo $cd
 	echo $cmd
-    #$cmd
+	cd $slot
+    $cmd
+	ls -l
 

@@ -6,6 +6,9 @@ public class Task04Main {
         // например вот так:
         /*
         from0to10000();
+
+
+        ы
          */
     }
 

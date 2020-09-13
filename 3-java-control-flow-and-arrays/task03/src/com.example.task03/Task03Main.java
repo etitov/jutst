@@ -7,6 +7,8 @@ public class Task03Main {
         /*
         System.out.println(getNameOfWeekDays(7));
          */
+
+
     }
 
     static String getNameOfWeekDays(int weekDaysNumber) {
