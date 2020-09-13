@@ -1,12 +1,5 @@
 language: java
 jdk: openjdk11
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
 script:
   - |
     diff=$(git diff --name-only $TRAVIS_BRANCH...HEAD | awk -F/ '{print $(NF-1)}' | sort -u | grep task)
