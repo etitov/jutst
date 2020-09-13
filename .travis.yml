@@ -1,5 +1,12 @@
 language: java
 jdk: openjdk11
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 script:
   - |
     diff=$(git diff --name-only $TRAVIS_BRANCH...HEAD | awk -F/ '{print $(NF-1)}' | sort -u | grep task)
@@ -14,9 +21,9 @@ script:
       echo "Only single task is allowed"
       exit 1
     fi
+    slot=`echo $diff | cut -f1 -d' '`
+    task=`echo $diff | cut -f2 -d' '`
     echo "Checking $task"
-	slot=$(echo $diff | cut -f1 -d' ')
-	task=$(echo $diff | cut -f2 -d' ')
     cmd="./gradlew :$task:clean :$task:check"
-	cd $slot
+    cd $slot
     $cmd
