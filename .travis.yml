@@ -11,13 +11,13 @@ script:
   - |
     diff=$(git diff --name-only $TRAVIS_BRANCH...HEAD | awk -F/ '{print $(NF-1)}' | sort -u | grep task)
     echo $diff
-    count=`echo $diff | wc -l`
+    count=`echo $diff | wc -w`
     if [ "$count" == "0" ];
     then
       echo "Nothing to check"
       exit 1
     fi
-    if [ $count != 1 ];
+    if [ $count != 2 ];
     then
       echo "Only single task is allowed"
       exit 1
