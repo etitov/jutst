@@ -28,6 +28,7 @@ script:
         sudo apt-get install -y ffmpeg
     fi
     echo "Checking $task"
+    ffprobe -v error -of flat -show_format task01/src/main/resources/3724.mp3
     cmd="./gradlew :$task:clean :$task:check"
     cd $slot
     $cmd
