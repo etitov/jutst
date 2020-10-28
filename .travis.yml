@@ -2,8 +2,10 @@ language: java
 jdk: openjdk11
 script:
   - |
+    echo "GO diff! "
     diff=$(git diff --name-only $TRAVIS_BRANCH...HEAD | awk -F/ '{print $1, $2}' | sort -u | grep task)
     count=`echo $diff | wc -w`
+    echo "COUNT $count"
     if [ "$count" == "0" ];
     then
       echo "Nothing to check"
@@ -16,7 +18,11 @@ script:
     fi
     slot=`echo $diff | cut -f1 -d' '`
     task=`echo $diff | cut -f2 -d' '`
+    
+    echo "SLOTTT $slot"
     if [ $slot == "08-java-io2" ]
+    then
+        echo "INSTALL"
         sudo add-apt-repository -y ppa:mc3man/trusty-media
         sudo apt-get -qq update
         sudo apt-get install -y ffmpeg
