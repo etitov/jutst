@@ -23,12 +23,11 @@ script:
     if [ $slot == "08-java-io2" ]
     then
         echo "INSTALL"
-        sudo add-apt-repository -y ppa:mc3man/trusty-media
         sudo apt-get -qq update
         sudo apt-get install -y ffmpeg
     fi
     echo "Checking $task"
-    ffprobe -v error -of flat -show_format task01/src/main/resources/3724.mp3
+    ffprobe -v error -of flat -show_format ./08-java-io2/task01/src/main/resources/3724.mp3
     cmd="./gradlew :$task:clean :$task:check"
     cd $slot
     $cmd
