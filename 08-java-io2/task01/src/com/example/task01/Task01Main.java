@@ -11,6 +11,7 @@ public class Task01Main {
         /*
         System.out.println(extractSoundName(new File("task01/src/main/resources/3727.mp3")));
         */
+		System.out.println("lol");
     }
 
     public static String extractSoundName(File file) throws IOException, InterruptedException {
