@@ -21,3 +21,6 @@ format.tags.genre="Classical"
 - Запустите эту команду как подпроцесс из java
 - Найдите в выводе свойство "format.tags.title"
 - Верните из метода extractSoundName значение этого свойства
+
+
+123
